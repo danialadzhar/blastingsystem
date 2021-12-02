@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\EmailTemplate;
 use App\Models\EmailGroup;
 use App\Models\UserEmail;
+use Auth;
 
 class EmailBlastingController extends Controller
 {
@@ -67,6 +68,8 @@ class EmailBlastingController extends Controller
                 'subject' => $template->title,
                 'email_content' => $template->email_content,
                 'group_id' => $group->group_id,
+                'email_from' => Auth::user()->email,
+                'name_from' => Auth::user()->name,
             ];
 
             $job = (new \App\Jobs\SendQueueEmail($details))->delay(now()->addSeconds(2));

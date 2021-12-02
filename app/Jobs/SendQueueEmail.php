@@ -38,13 +38,15 @@ class SendQueueEmail implements ShouldQueue
         $user_email = UserEmail::where('group_id', $this->details['group_id'])->get();
         $input['subject'] = $this->details['subject'];
         $input['email_content'] = $this->details['email_content'];
+        $input['email_from'] = $this->details['email_from'];
+        $input['name_from'] = $this->details['name_from'];
 
         foreach ($user_email as $key => $value) 
         {
             $input['email'] = $value->email;
             $input['name'] = $value->name;
 
-            Mail::to($input['email'], $input['name'])->send(new CustomEmail($input['subject'],$input['email_content']));
+            Mail::to($input['email'], $input['name'])->send(new CustomEmail($input['subject'],$input['email_content'],$input['email_from'],$input['name_from']));
         }
     }
 }
