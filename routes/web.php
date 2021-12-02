@@ -37,7 +37,7 @@ Route::get('user-email', 'UserEmailController@create');
 Route::get('user-email/group/create', 'UserEmailController@create_group');
 Route::get('user-email/group/list', 'UserEmailController@list_group');
 
-Route::post('user-email/upload', 'UserEmailControllerController@import_email');
-Route::post('user-email/group/store', 'UserEmailControllerController@create_group_store');
+Route::post('user-email/upload', 'UserEmailController@import_email');
+Route::post('user-email/group/store', 'UserEmailController@create_group_store');
 Route::post('user-email/group/destroy/{id}', 'UserEmailController@user_email_destroy');
 
