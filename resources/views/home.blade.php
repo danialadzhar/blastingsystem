@@ -12,7 +12,7 @@
         <p class="col-md-8 fs-5">
           Sistem ini dibina adalah bertujuan untuk membuat blasting kepada Team Momentum sahaja, sebarang penggunaan diluar dari tujuan sila berhubung dengan Encik Danial dari R&D.
         </p>
-        <a href="mailto:danialadzhar@momentuminternet.com" class="btn btn-info" type="button"><i class="bi bi-file-earmark"></i> Documentation</a>
+        <a href="https://danial-adzhar.notion.site/S-O-P-Blasting-Email-db4767693aac4b85a9916b81b43a8033" target="_blank" class="btn btn-info" type="button"><i class="bi bi-file-earmark"></i> Documentation</a>
         <a href="{{ asset('csv/format_email_blasting.csv') }}" class="btn btn-warning" download>Download CSV <i class="bi bi-cloud-arrow-down-fill"></i></a>
       </div>
     </div>
