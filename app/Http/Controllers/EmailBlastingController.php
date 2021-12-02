@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\EmailTemplate;
 use App\Models\EmailGroup;
+use App\Models\UserEmail;
 
 class EmailBlastingController extends Controller
 {
@@ -53,18 +54,28 @@ class EmailBlastingController extends Controller
     {
         $template = EmailTemplate::where('id', $request->email_template)->first();
         $group = EmailGroup::where('group_id', $request->email_group)->first();
+        $user_email = UserEmail::where('group_id', $request->email_group)->get();
 
-        $details = [
-            'subject' => $template->title,
-            'email_content' => $template->email_content,
-            'group_id' => $group->group_id,
-        ];
+        // If takde email dalam User Email akan keluar error.
+        if($user_email->isEmpty())
+        {
+            return redirect()->back()->with('error', 'No Email found in ' . $group->group_name);
 
-        $job = (new \App\Jobs\SendQueueEmail($details))->delay(now()->addSeconds(2));
+        }else{
 
-        dispatch($job);
-        
-        return redirect()->back()->with('success', 'Email Deliver Successfuly!');
+            $details = [
+                'subject' => $template->title,
+                'email_content' => $template->email_content,
+                'group_id' => $group->group_id,
+            ];
+
+            $job = (new \App\Jobs\SendQueueEmail($details))->delay(now()->addSeconds(2));
+
+            dispatch($job);
+
+            return redirect()->back()->with('success', 'Email Deliver Successfuly!');
+
+        }
     }
 
     public function email_template_destroy($id)

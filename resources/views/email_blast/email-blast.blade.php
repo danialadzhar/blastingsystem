@@ -21,6 +21,14 @@
                     </div>
                 </div>
             @endif
+            @if(session('error'))
+                <div class="col-md-12">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Sorry!</strong> {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            @endif
             <div class="col-md-6 mb-3">
                 <select class="form-select" name="email_template" required>
                     <option value="" selected>-- Choose Email Template --</option>
