@@ -27,9 +27,9 @@ class UserEmailController extends Controller
 
     public function import_email(Request $request)
     {
-        $request->validate([
-            'user_email' => 'required|mimes:csv,xlsx|max:2048',
-        ]);
+        // $request->validate([
+        //     'user_email' => 'required|mimes:xlsx,csv|max:2048',
+        // ]);
 
         Excel::import(new UserEmailImport, $request->user_email);
 
