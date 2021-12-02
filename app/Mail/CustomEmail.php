@@ -35,6 +35,6 @@ class CustomEmail extends Mailable
         $template = $this->email_content;
         $subject = $this->subject;
         
-        return $this->subject($subject)->view('email_blast.blast', compact('template'));
+        return $this->subject($subject)->view('email_blast.blast', compact('template'))->from('no-reply@momentuminternet.my', 'Momentum Internet Sdn Bhd');
     }
 }
