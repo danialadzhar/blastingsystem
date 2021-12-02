@@ -13,6 +13,14 @@
             <li class="breadcrumb-item active" aria-current="page">List Group</li>
         </ol>
     </nav> 
+    @if(session('success'))
+        <div class="col-md-12">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Successful!</strong> {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
     <div class="col-md-12">
         <a href="{{ url('user-email/group/create') }}" class="btn btn-primary mb-3 float-end"><i class="bi bi-plus-lg"></i> New Group</a>
     </div>
