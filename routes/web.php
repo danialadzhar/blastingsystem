@@ -33,10 +33,11 @@ Route::post('email/template/destroy/{id}', 'EmailBlastingController@email_templa
 |--------------------------------------------------------------------------
 */
 
-Route::get('user-email', 'UserEmail@create');
-Route::get('user-email/group/create', 'UserEmail@create_group');
-Route::get('user-email/group/list', 'UserEmail@list_group');
+Route::get('user-email', 'UserEmailController@create');
+Route::get('user-email/group/create', 'UserEmailController@create_group');
+Route::get('user-email/group/list', 'UserEmailController@list_group');
 
-Route::post('user-email/upload', 'UserEmail@import_email');
-Route::post('user-email/group/store', 'UserEmail@create_group_store');
+Route::post('user-email/upload', 'UserEmailControllerController@import_email');
+Route::post('user-email/group/store', 'UserEmailControllerController@create_group_store');
+Route::post('user-email/group/destroy/{id}', 'UserEmailController@user_email_destroy');
 

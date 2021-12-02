@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use App\Imports\UserEmailImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\EmailGroup;
+use App\Models\UserEmail;
 
-class UserEmail extends Controller
+class UserEmailController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -56,5 +57,16 @@ class UserEmail extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Group Created!');
+    }
+
+    public function user_email_destroy($id)
+    {
+        $user_email = UserEmail::where('group_id', $id);
+        $email_group = EmailGroup::where('group_id', $id);
+
+        $user_email->delete();
+        $email_group->delete();
+
+        return redirect()->back()->with('success', 'Group & User Email Deleted!');
     }
 }
