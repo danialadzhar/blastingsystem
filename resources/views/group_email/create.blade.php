@@ -22,6 +22,15 @@
                 </div>
             </div>
         @endif
+
+        @if($errors->has('user_email'))
+            <div class="col-md-12">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Sorry!</strong> The file you uploaded is not in CSV format
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        @endif
         
         <div class="col-md-12">
             <div class="card border-0">
