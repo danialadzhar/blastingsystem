@@ -44,6 +44,6 @@ class CustomEmail extends Mailable
         $name_from = $this->name_from;
         $support_file = $this->support_file;
         
-        return $this->subject($subject)->attach(public_path('support_file/') . $support_file)->view('email_blast.blast', compact('template'))->from($email_from, $name_from);
+        return $this->subject($subject)->attach(public_path('support_file/'. $support_file))->view('email_blast.blast', compact('template'))->from($email_from, $name_from);
     }
 }
