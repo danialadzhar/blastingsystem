@@ -36,10 +36,27 @@ class EmailBlastingController extends Controller
 
     public function email_template_store(Request $request)
     {
-        EmailTemplate::create([
-            'title' => $request->title,
-            'email_content' => $request->email_content,
-        ]);
+        $filename = 'file_' . uniqid() . '.' . $request->support_file->extension();
+        $request->support_file->move(public_path('support_file'), $filename);
+
+        if($request->support_file == "")
+        {
+            EmailTemplate::create([
+                'title' => $request->title,
+                'email_content' => $request->email_content,
+                'support_file' => 0,
+            ]);
+
+        }else{
+
+            EmailTemplate::create([
+                'title' => $request->title,
+                'email_content' => $request->email_content,
+                'support_file' => $filename,
+            ]);
+
+
+        }
 
         return redirect('email/template')->with('success', 'Email Template Saved!');
     }
@@ -72,20 +89,9 @@ class EmailBlastingController extends Controller
                 'group_id' => $group->group_id,
                 'email_from' => Auth::user()->email,
                 'name_from' => Auth::user()->name,
+                'support_file' => $template->support_file,
 
             ]);
-
-            // $details = [
-            //     'subject' => $template->title,
-            //     'email_content' => $template->email_content,
-            //     'group_id' => $group->group_id,
-            //     'email_from' => Auth::user()->email,
-            //     'name_from' => Auth::user()->name,
-            // ];
-
-            // $job = (new \App\Jobs\SendQueueEmail($details))->delay(now()->addSeconds(2));
-
-            // dispatch($job);
 
             return redirect()->back()->with('success', 'Email Will Deliver In 2 Minutes');
 

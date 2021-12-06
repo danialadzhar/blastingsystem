@@ -18,5 +18,6 @@ class EmailCron extends Model
         'group_id',
         'email_from',
         'name_from',
+        'support_file',
     ];
 }

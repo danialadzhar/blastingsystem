@@ -13,6 +13,7 @@ class EmailTemplate extends Model
 
     protected $fillable = [
         'title',
-        'email_content'
+        'email_content',
+        'support_file',
     ];
 }

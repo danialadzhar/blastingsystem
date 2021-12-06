@@ -14,7 +14,7 @@
         </ol>
     </nav> 
     <div class="col-md-12">
-        <form action="{{ url('email/template/store') }}" method="POST">
+        <form action="{{ url('email/template/store') }}" enctype="multipart/form-data" method="POST">
             @csrf
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-8 mb-3">
@@ -25,6 +25,10 @@
                         {{-- <textarea name="email_content" id="technig"></textarea> --}}
                         <textarea class="ckeditor form-control" name="email_content"></textarea>
                     </div>
+                </div>
+                <div class="col-md-12 col-lg-8 mb3">
+                    <input class="form-control" name="support_file" type="file">
+                    <small class="text-danger">Leave blank if no file</small>
                 </div>
                 <div class="col-md-12 col-lg-8">
                     <button type="submit" class="btn btn-primary float-end">Submit <i class="bi bi-arrow-right"></i></button>

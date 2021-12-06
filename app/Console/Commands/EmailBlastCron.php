@@ -48,6 +48,7 @@ class EmailBlastCron extends Command
             'group_id' => $email_cron->group_id,
             'email_from' => $email_cron->email_from,
             'name_from' => $email_cron->name_from,
+            'support_file' => $email_cron->support_file,
         ];
 
         $job = (new \App\Jobs\SendQueueEmail($details))->delay(now()->addSeconds(2));
