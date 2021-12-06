@@ -54,5 +54,8 @@ class EmailBlastCron extends Command
 
         dispatch($job);
 
+        $email_cron_destroy = EmailCron::first();
+        $email_cron_destroy->delete();
+
     }
 }
