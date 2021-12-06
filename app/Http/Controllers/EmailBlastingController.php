@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\EmailTemplate;
 use App\Models\EmailGroup;
 use App\Models\UserEmail;
+use App\Models\EmailCron;
 use Auth;
 
 class EmailBlastingController extends Controller
@@ -64,19 +65,29 @@ class EmailBlastingController extends Controller
 
         }else{
 
-            $details = [
+            EmailCron::create([
+                'email_id' => 'email_' . uniqid(),
                 'subject' => $template->title,
                 'email_content' => $template->email_content,
                 'group_id' => $group->group_id,
                 'email_from' => Auth::user()->email,
                 'name_from' => Auth::user()->name,
-            ];
 
-            $job = (new \App\Jobs\SendQueueEmail($details))->delay(now()->addSeconds(2));
+            ]);
 
-            dispatch($job);
+            // $details = [
+            //     'subject' => $template->title,
+            //     'email_content' => $template->email_content,
+            //     'group_id' => $group->group_id,
+            //     'email_from' => Auth::user()->email,
+            //     'name_from' => Auth::user()->name,
+            // ];
 
-            return redirect()->back()->with('success', 'Email Deliver Successfuly!');
+            // $job = (new \App\Jobs\SendQueueEmail($details))->delay(now()->addSeconds(2));
+
+            // dispatch($job);
+
+            return redirect()->back()->with('success', 'Email Will Deliver In 2 Minutes');
 
         }
     }
